@@ -1,0 +1,314 @@
+{% load render_ar static %}
+
+<html dir="rtl">
+ <head>
+   <title> بيانات الموظف - {{ obj.full_name }}</title>
+   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <style type="text/css">
+        @font-face {
+          font-family:jfflat,"jfflat Font";
+          src:url('/static/raq/ar/jfflat.ttf');
+        }
+        @page {
+                font-family:jfflat;
+                font-size:1rem;
+                size: A4;
+                margin: 1cm;
+                margin-top: 4cm;
+
+              @frame content_frame { /* Static Frame */
+              /* -pdf-frame-content: header_content; */
+                 
+              margin-top: 1.3cm;
+              margin-right:0.9cm; 
+              margin-left:0.9cm; 
+              }
+               
+              @frame footer_frame { /* Another static Frame */
+              -pdf-frame-content: footer_content;
+                     
+                     bottom: 1cm;
+                    margin-left: 3cm;
+                    margin-right: 3cm;
+                    height: 2cm;
+                     
+              }
+          }
+          body {
+            font-family:  jfflat;
+            font-size: 11px;
+            
+          }
+          
+          /* table { -pdf-keep-with-next: true; } */
+
+          /* tr {
+             text-align:right;   
+             border-left:1px solid #eee; 
+             border-right:1px solid #eee;
+             border-bottom:1px solid #eee;
+            border:1px solid #9E9E9E;
+           } */
+           p{
+             margin: 0;
+             padding: 0;
+             font-size:11px;
+             font-weight: 300;
+           }
+           h1 {
+             font-size: 11px;
+           }
+          p.title {
+            font-weight:700;
+            margin-left: 0cm; 
+            padding:.5cm;
+            padding-bottom: 0cm;
+            margin-bottom: 0cm;
+            border-bottom-style: solid;
+              border-bottom-color: #eeeeee;
+              border-bottom-width:2px; 
+              font-size:15px;
+              background-color: #eee ;
+              /* margin-top: 0cm;  */
+          }
+          p.addr {
+            padding: 0.05cm;
+            color:#353434;
+          }
+          p.bb{
+            border-bottom: 1px solid #e7e2e7;
+            padding-top:0.1cm;
+
+          }
+          p.pt {
+            padding-top:0.1cm;
+            border-bottom: 1px dotted #e7e2e7;
+             
+          }
+          p.sig{
+            border-top:1px solid #c0c0c0;padding: 0.4cm;margin:1cm; size:1cm;
+          }
+          p.separator { -pdf-keep-with-next: false; font-size: 6pt; }
+    </style>
+    <style type="text/css">
+      .tg  {border-collapse:collapse;border-spacing:0;}
+      .tg td{text-align: right; font-weight:normal;padding: 1px;border-style:solid;border-width:0.5px;overflow:scroll;word-break:normal;border-color:rgb(179, 174, 174);}
+      .tg th{font-weight:normal;padding:1px;border-style:solid;border-width:0.5px;overflow:scroll;word-break:normal;border-color:rgb(179, 174, 174);}
+      .tg-t {color: white;background-color:gray;text-align: right;font-size:14px;font-weight: 700; padding-top: 0.4cm;margin-top:1cm; size:1cm;}
+    </style>
+ </head>
+ <body> 
+    
+    <!-- Content for Static Frame 'header_frame' -->
+    <div style="overflow-y:scroll" id="content_frame">
+
+      <table>
+        <tr>
+          
+          <td style="padding-right: .4cm;text-align: right;">
+            <table>
+              <tr>
+                <td style="width:70%;text-align: right;border-right: 1px solid #c0c0c0;"> 
+                  <p class="addr">  {{ obj.branch.company|_ar }} </p>
+                  <p class="addr">  {{ obj.branch.company.country|_ar }} </p>
+                  <p class="addr">  {{ obj.branch.company.country_state|_ar }} </p>
+                  <p class="addr">  {{ obj.branch.company.phone|default:'' }} </p>
+                  <p class="addr">  {{obj.branch.company.website|_ar}} </p>
+                  
+                </td> 
+
+                <td style="text-align: right;width:30%;"> 
+                   <img src="{{ obj.branch.company.image.url }}"  alt ="{{ obj.branch.company|_ar }}" width="80" height="80"/>
+                </td>  
+                
+              </tr>  
+            </table>
+           
+            
+          </td>
+
+        </tr>
+      </table>
+        
+        <p class="separator">&nbsp;<p>
+      
+    
+
+      <table class="tg">
+        
+        <tr>
+          <td class="tg-0pky" rowspan="4">
+            <img src="{{ obj.image.url }}"  alt ="{{ obj.employee|_ar }}" width="80" height="80"/>
+          </td>
+          <td class="tg-0pky" colspan="3">
+            <p class="bb"> {{ obj.full_name|_ar }} : {{ 'الاسم الكامل'|_ar}}</p>
+          </td>
+          <td class="tg-0pky" colspan="3">
+            <p class="bb"> {{ obj.first_name|_ar }} : {{ 'الاسم الاول'|_ar}}</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3">
+            <p class="bb"> {{ obj.name_en|_ar }} :  {{ 'الاسم بالانجليزي'|_ar}}</p>
+          </td>
+          <td class="tg-0pky" colspan="3">
+            <p class="bb"> {{ obj.second_name|_ar }} :  {{ 'اسم الاب'|_ar}}</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3">
+            <p class="bb"> {{ obj.code|_ar }} :  {{ 'الرقم الوظيفي'|_ar}}</p>
+          </td>
+          <td class="tg-0pky" colspan="3">
+            <p class="bb"> {{ obj.third_name|_ar }} :  {{ 'اسم الجد'|_ar}}</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3">
+            <p class="bb"> {{ obj.state|_ar }} :  {{ 'حالة الموظف'|_ar}}</p>
+          </td>
+          <td class="tg-0pky" colspan="3">
+            <p class="bb"> {{ obj.last_name|_ar }} :  {{ 'اللقب'|_ar}}</p>
+          </td>
+        </tr>
+        
+        <tr>
+          <th class="tg-t" colspan="7"><b>{{'معلومات العمل'|_ar}}</b>  </th>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.branch|_ar }} :  {{ 'الفرع'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.work_location|_ar }} :  {{ 'موقع العمل'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.department|_ar }} :  {{ 'القسم'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.work_email|_ar }} :  {{ 'ايميل العمل'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.job|_ar }} :  {{ 'المنصب الوظيفي'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.mobile|_ar }} :  {{ 'رقم الجوال'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.job_title|_ar }} :  {{ 'المسمى الوظيفي'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.work_phone|_ar }} :  {{ 'هاتف العمل'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.parent|_ar }} :  {{ 'المدير'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.first_commencement_date|_ar }} :  {{ 'تاريخ بدأ مباشرة العمل'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.coach|_ar }} :  {{ 'المدرب'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.first_commencement_date_hijry|_ar }} :  {{ 'تاريخ بدأ مباشرة العمل(هجري)'|_ar}}</p></td>
+        </tr>
+
+        <tr>
+          <th class="tg-t" colspan="7"><b>{{'الجنسية ومعلومات التواصل'|_ar}}</b>  </th>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.passport_id|_ar }} :  {{ 'رقم جواز السفر'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.country|_ar }} :  {{ 'البلد'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.address_home|_ar }} :  {{ 'العنوان الخاص'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.identification_id|_ar }} :  {{ 'هوية مقيم'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.emergency_contact|_ar }} :  {{ 'جهة الاتصال في حال الطوارئ'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.national_identity|_ar }} :  {{ 'الهوية الوطنية'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.emergency_phone|_ar }} :  {{ 'هاتف الطوارئ'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.national_identity_expire_date|_ar }} :  {{ 'تاريخ انتهاء الهوية'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.km_home_work|_ar }} :  {{ 'كم من المنزل الى العمل'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.national_identity_expire_date_hijry|_ar }} :  {{ 'تاريخ انتهاء الهوية (هجري) '|_ar}}</p></td>
+        </tr>
+        
+        <tr>
+            <th class="tg-t" colspan="7"><b>{{'الحالة والميلاد'|_ar}}</b>  </th>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.birthday|_ar }} :  {{ 'تاريخ الميلاد'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.get_gender_display|_ar }} :  {{ 'الجنس'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.birthday_hijry|_ar }} :  {{ 'تاريخ الميلاد بالهجري'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.get_marital_display|_ar }} :  {{ 'الحالة الاجتماعية'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.country_of_birth|_ar }} :  {{ 'مكان الميلاد'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.user|_ar }} :  {{ 'المستخدم'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.spouse_birthdate|_ar }} :  {{ 'تاريخ الزواج'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.spouse_birthdate_hijry|_ar }} :  {{ 'تاريخ الزواج بالهجري'|_ar}}</p></td>
+        </tr>
+        
+        <tr>
+            <th class="tg-t" colspan="7"><b>{{'تصريح العمل'|_ar}}</b>  </th>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.permit_no|_ar }} :  {{ 'رقم تصريح العمل'|_ar}}</td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.visa_no|_ar }} :  {{ 'رقم التأشيرة'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.visa_expire_hijry|_ar }} :  {{ 'تاريخ انتهاء التأشيرة(هجري)'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.visa_expire|_ar }} :  {{ 'تاريخ انتهاء التأشيرة'|_ar}}</p></td>
+        </tr>
+        
+        <tr>
+            <th class="tg-t" colspan="7"><b>{{'التعليم'|_ar}}</b>  </th>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.major|_ar }} :  {{ 'التخصص'|_ar}}</td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.certificate|_ar }} :  {{ 'مستوى الشهادة'|_ar}}</p></td>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.study_school|_ar }} :  {{ 'المدرسة'|_ar}}</p></td>
+        </tr>
+        
+        <tr>
+          <th class="tg-t" colspan="7"><b>{{'معلومات اخرى'|_ar}}</b>  </th>
+        </tr>
+        
+          <tr>
+            <td class="tg-0pky" colspan="3">
+              <p class="bb"> {{ obj.notes|_ar }} :  {{ 'ملاحظات'|_ar}}</p>
+            </td>
+            <td class="tg-0pky" colspan="4">
+                <p class="bb"> 
+                  {% for line in obj.category_ids.all %}
+                  {{ line |_ar }} , 
+                  {% endfor %}  :  {{ 'الوسم'|_ar}}
+                </p>
+            </td>
+          </tr>
+          
+      </table>
+    </div>
+
+
+    <!-- Content for Static Frame 'footer_frame' -->
+   
+   
+    <div style="position:fixed; margin-top:20%" id="footer_content"> 
+     
+     <table>
+      <tr style="text-align: center">
+        <td><p class="bb"> {{ obj.parent|_ar }} :  {{ 'المدير'|_ar}}</p></td>
+        <td><p class="bb"> {{ obj.coach|_ar }} :  {{ 'المدرب'|_ar}}</p></td>
+        
+      </tr>
+     </table>
+    </div>
+    <!-- HTML Content -->
+    
+ 
+
+ </body>
+</html>

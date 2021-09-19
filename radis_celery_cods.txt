@@ -1,0 +1,30 @@
+#server
+
+redis-server
+redis-cli ping
+
+set DJANGO_SETTINGS_MODULE=Attendance_FacialRecognition.settings
+
+celery -A Attendance_FacialRecognition worker -l info
+
+celery -A Attendance_FacialRecognition beat -l info
+
+
+
+
+
+
+#celery beat path
+celery worker --pidfile=/celeryd.pid
+
+
+#
+pip install celery
+pip install django-celery
+pip install redis
+pip install django-celery-results
+pip install django-celery-beat
+pip install eventlet  
+pip3 install celery[redis] sqlalchemy
+pip install anyjson==0.3.3
+

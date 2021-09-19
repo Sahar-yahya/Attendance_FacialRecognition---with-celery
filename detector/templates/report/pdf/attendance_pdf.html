@@ -1,0 +1,150 @@
+{% load render_ar static %}
+
+<html dir="rtl">
+ <head>
+   <title> بيانات الموظف - {{ obj.full_name }}</title>
+   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <style type="text/css">
+        @font-face {
+          font-family:jfflat,"jfflat Font";
+          src:url('/static/fonts/jfflat.ttf');
+        }
+        @page {
+                font-family:jfflat;
+                font-size:1rem;
+                size: A4;
+                margin: 1cm;
+                margin-top: 4cm;
+
+              @frame content_frame { /* Static Frame */
+              /* -pdf-frame-content: header_content; */
+                 
+              margin-top: 1.3cm;
+              margin-right:0.9cm; 
+              margin-left:0.9cm; 
+              }
+               
+              @frame footer_frame { /* Another static Frame */
+              -pdf-frame-content: footer_content;
+                     
+                     bottom: 1cm;
+                    margin-left: 3cm;
+                    margin-right: 3cm;
+                    height: 2cm;
+                     
+              }
+          }
+          body {
+            font-family:  jfflat;
+            font-size: 11px;
+            
+          }
+          
+          /* table { -pdf-keep-with-next: true; } */
+
+          /* tr {
+             text-align:right;   
+             border-left:1px solid #eee; 
+             border-right:1px solid #eee;
+             border-bottom:1px solid #eee;
+            border:1px solid #9E9E9E;
+           } */
+           p{
+             margin: 0;
+             padding: 0;
+             font-size:11px;
+             font-weight: 300;
+           }
+           h1 {
+             font-size: 11px;
+           }
+          p.title {
+            font-weight:700;
+            margin-left: 0cm; 
+            padding:.5cm;
+            padding-bottom: 0cm;
+            margin-bottom: 0cm;
+            border-bottom-style: solid;
+              border-bottom-color: #eeeeee;
+              border-bottom-width:2px; 
+              font-size:15px;
+              background-color: #eee ;
+              /* margin-top: 0cm;  */
+          }
+          p.addr {
+            padding: 0.05cm;
+            color:#353434;
+          }
+          p.bb{
+            border-bottom: 1px solid #e7e2e7;
+            padding-top:0.1cm;
+
+          }
+          p.pt {
+            padding-top:0.1cm;
+            border-bottom: 1px dotted #e7e2e7;
+             
+          }
+          p.sig{
+            border-top:1px solid #c0c0c0;padding: 0.4cm;margin:1cm; size:1cm;
+          }
+          p.separator { -pdf-keep-with-next: false; font-size: 6pt; }
+    </style>
+    <style type="text/css">
+      .tg  {border-collapse:collapse;border-spacing:0;}
+      .tg td{text-align: right; font-weight:normal;padding: 1px;border-style:solid;border-width:0.5px;overflow:scroll;word-break:normal;border-color:rgb(179, 174, 174);}
+      .tg th{font-weight:normal;padding:1px;border-style:solid;border-width:0.5px;overflow:scroll;word-break:normal;border-color:rgb(179, 174, 174);}
+      .tg-t {color: white;background-color:gray;text-align: right;font-size:14px;font-weight: 700; padding-top: 0.4cm;margin-top:1cm; size:1cm;}
+    </style>
+ </head>
+ <body> 
+    
+    <!-- Content for Static Frame 'header_frame' -->
+    <div style="overflow-y:scroll" id="content_frame">
+
+      <table>
+        <tr>
+          
+          <td style="padding-right: .4cm;text-align: right;">
+        
+          </td>
+
+        </tr>
+      </table>
+        
+        <p class="separator">&nbsp;<p>
+      
+    
+
+      <table class="tg">
+        <tr>
+          <th class="tg-t" colspan="7"><b>{{'الحضور والانصراف'|_ar}}</b>  </th>
+        </tr>
+        <tr>
+          <td class="tg-0pky" colspan="3"><p class="bb"> {{ obj.employee|_ar }} :  {{ 'الفرع'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.check_in|_ar }} :  {{ 'موقع العمل'|_ar}}</p></td>
+          <td class="tg-0pky" colspan="4"><p class="bb"> {{ obj.check_out|_ar }} :  {{ 'موقع العمل'|_ar}}</p></td>
+        </tr>
+      </table>
+    </div>
+
+
+    <!-- Content for Static Frame 'footer_frame' -->
+   
+   
+    <div style="position:fixed; margin-top:20%" id="footer_content"> 
+     
+     <table>
+      <tr style="text-align: center">
+        <td><p class="bb"> {{ obj.parent|_ar }} :  {{ 'المدير'|_ar}}</p></td>
+        <td><p class="bb"> {{ obj.coach|_ar }} :  {{ 'المدرب'|_ar}}</p></td>
+        
+      </tr>
+     </table>
+    </div>
+    <!-- HTML Content -->
+    
+ 
+
+ </body>
+</html>
